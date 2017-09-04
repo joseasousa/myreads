@@ -1,6 +1,6 @@
-import React from 'react'
-import * as BooksAPI from '../api/BooksAPI'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import * as BooksAPI from '../api/BooksAPI';
+import { Link } from 'react-router-dom';
 
 export default class ExampleApp extends React.Component {
   constructor (props) {
@@ -11,7 +11,7 @@ export default class ExampleApp extends React.Component {
   }
 
   componentDidMount () {
-    BooksAPI.getAll().then(books => this.setState({books}))
+    BooksAPI.getAll().then(books => this.setState({books}));
   }
 
   render () {
@@ -181,7 +181,6 @@ export default class ExampleApp extends React.Component {
           <Link to='/search'>Add a book</Link>
         </div>
       </div>
-
-    )
+    );
   }
 }

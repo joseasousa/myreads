@@ -8,10 +8,29 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.12"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,sx}",
+      "!src/index.js",
+      "!src/registerServiceWorker.js",
+      "!src/components/teste.js",
+      "!src/setupTests.js",
+      "!src/api/*"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:cover": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
+    "react-test-renderer": "^15.6.1"
   }
 }

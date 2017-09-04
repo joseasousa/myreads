@@ -1,6 +1,6 @@
-import React from 'react'
-import Book from './Book'
-import './Books.css'
+import React from 'react';
+import Book from './Book';
+import './Books.css';
 
 const Books = ({books, title}) => {
   return (
@@ -11,13 +11,13 @@ const Books = ({books, title}) => {
           {
             books.map(book => (
               <li key={book.id}>
-                <Book book={book} />
+                <Book book={book} />                
               </li>
             ))}
         </ol>
       </div>
     </div>
-  )
+  );
 }
 
-export default Books
+export default Books;
