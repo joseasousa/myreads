@@ -43,7 +43,7 @@ class BooksApp extends React.Component {
                 books.filter(book =>
                   book.shelf === BookState.id)
               }
-              title={BookState.title} />
+              state={BookState} />
           )}
         </div>
 
