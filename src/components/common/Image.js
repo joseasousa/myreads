@@ -1,12 +1,10 @@
 import React from 'react';
-import './Image.css'
 
 const Image = ({ url, title }) => {
-    return(        
-        <div className='book-top'>
+    return(          
+        <div className='book-cover'>
             <img
                 alt={ title }
-                className='book-cover'
                 src={ url } />            
         </div>
     );

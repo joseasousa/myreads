@@ -9,11 +9,11 @@ export default class Search extends React.Component {
     this.state = {
       books: []
     };
+   this._getBooks = event => this.getBooks(event.target.value) 
   }
 
-  getBooks = e => {
-    //console.log(e.target.value);
-    BooksAPI.search(e.target.value, 1)
+  getBooks(search) {    
+    BooksAPI.search(search, 1)
       .then(books => this.setState({books}));
   }
 
@@ -34,7 +34,10 @@ export default class Search extends React.Component {
                 */
                 //console.log(this.state.books)
                 }
-              <input type='text' placeholder='Search by title or author' onKeyUp={this.getBooks} />
+              <input 
+                type='text' 
+                placeholder='Search by title or author' 
+                onKeyUp={this._getBooks} />
 
             </div>
           </div>
