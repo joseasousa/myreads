@@ -1,2 +1,2 @@
-export * from './Select';
-export * from  './Image';
+export * from './Select'
+export * from './Image'

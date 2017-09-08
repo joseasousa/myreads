@@ -1,13 +1,12 @@
-import React from 'react';
+import React from 'react'
+import './image.css'
 
-const Image = ({ url, title }) => {
-    return(          
-        <div className='book-cover'>
-            <img
-                alt={ title }
-                src={ url } />            
-        </div>
-    );
-}
+const Image = ({ url, title }) => (
+  <div className='thumbnail'>
+    <img
+      alt={title}
+      src={url} />
+  </div>
+)
 
-export { Image };
+export { Image }

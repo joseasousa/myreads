@@ -1,21 +1,21 @@
-import React from 'react';
-import * as BooksAPI from '../../api/BooksAPI';
-import { Link } from 'react-router-dom';
-import { Image } from '../common';
+import React from 'react'
+import * as BooksAPI from '../../api/BooksAPI'
+import { Link } from 'react-router-dom'
+import { Image } from '../common'
 
 export default class Search extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
       books: []
-    };
-    this._getBooks = e =>  this.getBooks(e.target.value)
+    }
+    this._getBooks = e => this.getBooks(e.target.value)
   }
 
   getBooks (book) {
     //console.log(e.target.value);
     BooksAPI.search(book, 1)
-      .then(books => this.setState({books}));
+      .then(books => this.setState({books}))
   }
 
   render () {
@@ -41,16 +41,15 @@ export default class Search extends React.Component {
           </div>
           <div className='search-books-results'>
             <ol className='books-grid' >
-              {this.state.books !== undefined &&
-               this.state.books.map(book => (
-                <li key={ book.id } >
-                  <Image url={ book.imageLinks.thumbnail } />
+              {this.state.books.map(book => (
+                <li key={book.id} >
+                  <Image url={book.imageLinks.thumbnail} />
                 </li>
               ))}
             </ol>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
