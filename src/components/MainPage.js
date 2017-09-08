@@ -1,11 +1,11 @@
-import React from 'react';
-import * as BooksAPI from '../api/BooksAPI';
-import { Link } from 'react-router-dom';
-import Books from './Books';
+import React from 'react'
+import * as BooksAPI from '../api/BooksAPI'
+import { Link } from 'react-router-dom'
+import Books from './Books'
 
 class BooksApp extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
       books: [],
       bookStates: [{
@@ -18,17 +18,19 @@ class BooksApp extends React.Component {
         id: 'read',
         title: 'Read'
       }]
-    };
+    }
   }
 
   componentDidMount () {
-    BooksAPI.getAll().then(books => {
-      this.setState({ books });
-    });
+    BooksAPI.getAll()
+    .then(books => {
+      this.setState({ books })
+    })
+    .catch(error => console.log(error))
   }
 
   render () {
-    const { books, bookStates } = this.state;
+    const { books, bookStates } = this.state
     return (
       <div className='list-books'>
 
@@ -52,8 +54,8 @@ class BooksApp extends React.Component {
           </Link>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default BooksApp;
+export default BooksApp
