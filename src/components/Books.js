@@ -9,7 +9,7 @@ const Books = ({books, state}) => (
         {
           books.map(book => (
             <li key={book.id}>
-              <Book book={book} state={state.id} />
+              <Book book={book} state={state.id} action='home' />
             </li>
           ))
           }
