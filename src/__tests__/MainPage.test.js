@@ -1,8 +1,8 @@
-import React from 'react';
-import MainPage from '../components/MainPage';
+import React from 'react'
+import MainPage from '../components/MainPage'
 
-describe('<MainPage />', () => {    
+describe('<MainPage />', () => {
     it('rendering', () => {
-        expect(shallow(<MainPage />)).toMatchSnapshot();
-    });
+        expect(shallow(<MainPage />)).toMatchSnapshot()
+    })
 })

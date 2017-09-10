@@ -16,7 +16,7 @@ class Book extends React.Component {
     const bookState = event.target.value
     const currentBook = this.props.book
     BookApi.update(currentBook, bookState)
-    .then(() => {
+    .then((books) => {
       this.setState({redirect: true})
     })
     .catch(error => console.log(error))
@@ -25,9 +25,13 @@ class Book extends React.Component {
     const { from } = {from: { pathname: '/' }}
     const { redirect } = this.state
     if (redirect) {
-      return (
-        <Redirect to={from} />
-      )
+      if (this.props.action === 'home') {
+        window.location.reload()
+      } else {
+        return (
+          <Redirect to={from} />
+        )
+      }
     }
     return (
       <div className='book' >

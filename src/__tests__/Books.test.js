@@ -1,12 +1,15 @@
-import React from 'react';
-import Books from '../components/Books';
+import React from 'react'
+import Books from '../components/Books'
 
 describe('<Books />', () => {
-    const books = [{
-        id:1
-    }]
-    const title = 'test'
-    it('rendering', () => {
-        expect(shallow(<Books books={books} title={title} />)).toMatchSnapshot();
-    });
+  const books = [{
+    id: 1
+  }]
+  const bookStates = [{
+    id: 'currentlyReading',
+    title: 'Currently Reading'
+  }]
+  it('rendering', () => {
+    expect(shallow(<Books books={books} state={bookStates} />)).toMatchSnapshot()
+  })
 })
