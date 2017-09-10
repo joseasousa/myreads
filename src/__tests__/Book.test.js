@@ -7,7 +7,12 @@ describe('<Book />', () => {
             thumbnail: ''
         }
     }
+    const state = {
+        id: 'currentlyReading',
+        title: 'Currently Reading'
+      }
+      
     it('rendering', () => {
-        expect(shallow(<Book book={book} />)).toMatchSnapshot();
+        expect(shallow(<Book book={book} state={state} />)).toMatchSnapshot();
     });
 })
