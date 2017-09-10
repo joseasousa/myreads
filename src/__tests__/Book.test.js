@@ -15,4 +15,4 @@ describe('<Book />', () => {
     it('rendering', () => {
         expect(shallow(<Book book={book} state={state} />)).toMatchSnapshot();
     });
-})
+});
