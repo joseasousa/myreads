@@ -1,7 +1,6 @@
 import React from 'react'
 import { Select, Image } from './common'
 import * as BookApi from '../api/BooksAPI'
-import { Redirect } from 'react-router-dom'
 
 class Book extends React.Component {
   constructor (props) {
@@ -17,29 +16,20 @@ class Book extends React.Component {
     const currentBook = this.props.book
     BookApi.update(currentBook, bookState)
     .then((books) => {
-      this.setState({redirect: true})
+      console.log('update', books)
+      this.setState({ redirect: true })
     })
     .catch(error => console.log(error))
   }
   render () {
-    const { from } = {from: { pathname: '/' }}
-    const { redirect } = this.state
-    if (redirect) {
-      if (this.props.action === 'home') {
-        window.location.reload()
-      } else {
-        return (
-          <Redirect to={from} />
-        )
-      }
-    }
+    const { handleChange } = this.props
     return (
       <div className='book' >
         <div className='book-top'>
           <Image title={this.props.book.title} url={this.props.book.imageLinks.thumbnail} />
           <Select
             value={this.props.state}
-            change={this.handleChange}
+            change={handleChange}
           />
         </div>
 
