@@ -3,6 +3,9 @@ import React from 'react'
 const Select = ({value, name, change}) => (
   <div className='book-shelf-changer'>
     <select value={value} onChange={change}>
+      <option value='none' disabled>
+        Move to...
+      </option>
       <option value='currentlyReading'>
         Currently Reading
       </option>
@@ -16,4 +19,4 @@ const Select = ({value, name, change}) => (
   </div>
 )
 
-export {Select}
+export { Select }

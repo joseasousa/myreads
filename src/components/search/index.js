@@ -1,15 +1,28 @@
 import React from 'react'
 import * as BooksAPI from '../../api/BooksAPI'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Book from '../Book'
+import If from '../../If'
 
 export default class Search extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      books: []
+      books: [],
+      redirect: false
     }
     this._getBooks = e => this.getBooks(e.target.value)
+  }
+
+  handleChange (event) {
+    const bookState = event.target.value
+    const currentBook = this.props.book
+    BooksAPI.update(currentBook, bookState)
+    .then((books) => {
+      console.log('update', books)
+      this.setState({ redirect: true })
+    })
+    .catch(error => console.log(error))
   }
 
   getBooks (book) {
@@ -19,8 +32,12 @@ export default class Search extends React.Component {
   }
 
   render () {
-    return (
-      <div className='app'>
+    const { redirect } = this.state    
+    return ( 
+      { redirect:  (
+        <Redirect to='/' />
+      ) &&
+      <div className='app'>      
         <div className='search-books'>
           <div className='search-books-bar'>
             <Link to='/' className='close-search' >Close</Link>
@@ -43,6 +60,7 @@ export default class Search extends React.Component {
           </div>
         </div>
       </div>
+      }
     )
   }
 }
