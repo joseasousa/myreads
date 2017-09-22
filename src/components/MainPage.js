@@ -26,9 +26,7 @@ class BooksApp extends React.Component {
   handleChange (book) {
     let {books} = this.state
     const index = books.findIndex(b => b.id === book.id)
-    books[index] = book
-    console.log(`book1`, this.state.books[index])
-    console.log(`book2`, books[index])
+    books[index] = book    
     this.setState({books})
   }
 
