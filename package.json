@@ -12,6 +12,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,sx}",
       "!src/index.js",
+      "!src/App.js",
       "!src/registerServiceWorker.js",
       "!src/components/teste.js",
       "!src/setupTests.js",

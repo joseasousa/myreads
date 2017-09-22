@@ -19,6 +19,17 @@ class BooksApp extends React.Component {
         title: 'Read'
       }]
     }
+
+    this._handleChange = book => this.handleChange(book)
+  }
+
+  handleChange (book) {
+    let {books} = this.state
+    const index = books.findIndex(b => b.id === book.id)
+    books[index] = book
+    console.log(`book1`, this.state.books[index])
+    console.log(`book2`, books[index])
+    this.setState({books})
   }
 
   componentDidMount () {
@@ -26,7 +37,7 @@ class BooksApp extends React.Component {
     .then(books => {
       this.setState({ books })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.error(error))
   }
 
   render () {
@@ -40,7 +51,9 @@ class BooksApp extends React.Component {
 
         <div className='list-books-content'>
           {bookStates.map(BookState =>
-            <Books key={BookState.id}
+            <Books
+              change={this._handleChange}
+              key={BookState.id}
               books={
                 books.filter(book =>
                   book.shelf === BookState.id)

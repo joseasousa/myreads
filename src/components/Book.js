@@ -1,7 +1,6 @@
 import React from 'react'
 import { Select, Image } from './common'
-import * as BookApi from '../api/BooksAPI'
-import { Redirect } from 'react-router-dom'
+import * as BooksAPI from '../api/BooksAPI'
 
 class Book extends React.Component {
   constructor (props) {
@@ -9,42 +8,41 @@ class Book extends React.Component {
     this.state = {
       redirect: false
     }
-    this.handleChange = this.handleChange.bind(this)
+    this._handleChange = e => this.handleChange(e.target.value)
   }
 
   handleChange (event) {
-    const bookState = event.target.value
-    const currentBook = this.props.book
-    BookApi.update(currentBook, bookState)
-    .then(() => {
-      this.setState({redirect: true})
+    console.log(`test book`, event)
+    const { book } = this.props
+    book.shelf = event
+    const bookState = event
+    console.log('teste')
+    BooksAPI.update(book, bookState)
+    .then((books) => {
+      this.props.change(book)
     })
     .catch(error => console.log(error))
   }
+
   render () {
-    const { from } = {from: { pathname: '/' }}
-    const { redirect } = this.state
-    if (redirect) {
-      return (
-        <Redirect to={from} />
-      )
-    }
+    const { title, imageLinks, authors } = this.props.book
+    const { state } = this.props
     return (
       <div className='book' >
         <div className='book-top'>
-          <Image title={this.props.book.title} url={this.props.book.imageLinks.thumbnail} />
+          <Image title={title} url={imageLinks.thumbnail} />
           <Select
-            value={this.props.state}
-            change={this.handleChange}
+            value={state}
+            change={this._handleChange}
           />
         </div>
 
         <div className='book-title'>
-          {this.props.book.title}
+          {title}
         </div>
 
         <div className='book-authors'>
-          {this.props.book.authors}
+          {authors}
         </div>
       </div>
     )
