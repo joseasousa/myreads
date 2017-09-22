@@ -11,17 +11,15 @@ class Book extends React.Component {
     this._handleChange = e => this.handleChange(e.target.value)
   }
 
-  handleChange (event) {
-    console.log(`test book`, event)
+  handleChange (event) {    
     const { book } = this.props
     book.shelf = event
-    const bookState = event
-    console.log('teste')
+    const bookState = event    
     BooksAPI.update(book, bookState)
     .then((books) => {
       this.props.change(book)
     })
-    .catch(error => console.log(error))
+    .catch(error => console.error(error))
   }
 
   render () {
