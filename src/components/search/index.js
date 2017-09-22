@@ -1,8 +1,8 @@
 import React from 'react'
 import * as BooksAPI from '../../api/BooksAPI'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Book from '../Book'
-import If from '../../If'
+
 
 export default class Search extends React.Component {
   constructor (props) {
@@ -15,8 +15,7 @@ export default class Search extends React.Component {
     this._handleChange = e => this.handleChange(e)
   }
 
-  handleChange (event) {
-    console.log(`test search`, event)
+  handleChange (event) {    
     this.setState({redirect: true})
   }
 
@@ -29,10 +28,7 @@ export default class Search extends React.Component {
 
   render () {
     return (
-      <div className='app'>
-        <If test={this.state.redirect} >
-          <Redirect to='/' />
-        </If>
+      <div className='app'>       
         <div className='search-books'>
           <div className='search-books-bar'>
             <Link to='/' className='close-search' >Close</Link>
@@ -41,7 +37,6 @@ export default class Search extends React.Component {
                 type='text'
                 placeholder='Search by title or author'
                 onKeyUp={this._getBooks} />
-
             </div>
           </div>
           <div className='search-books-results'>
