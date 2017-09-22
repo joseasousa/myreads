@@ -12,32 +12,27 @@ export default class Search extends React.Component {
       redirect: false
     }
     this._getBooks = e => this.getBooks(e.target.value)
+    this._handleChange = e => this.handleChange(e)
   }
 
   handleChange (event) {
-    const bookState = event.target.value
-    const currentBook = this.props.book
-    BooksAPI.update(currentBook, bookState)
-    .then((books) => {
-      console.log('update', books)
-      this.setState({ redirect: true })
-    })
-    .catch(error => console.log(error))
+    console.log(`test search`, event)
+    this.setState({redirect: true})
   }
 
   getBooks (book) {
-    //console.log(e.target.value);
+    // console.log(e.target.value);
     BooksAPI.search(book, 1)
       .then(books => this.setState({books}))
+      .catch(error => console.error(error))
   }
 
   render () {
-    const { redirect } = this.state    
-    return ( 
-      { redirect:  (
-        <Redirect to='/' />
-      ) &&
-      <div className='app'>      
+    return (
+      <div className='app'>
+        <If test={this.state.redirect} >
+          <Redirect to='/' />
+        </If>
         <div className='search-books'>
           <div className='search-books-bar'>
             <Link to='/' className='close-search' >Close</Link>
@@ -53,14 +48,13 @@ export default class Search extends React.Component {
             <ol className='books-grid' >
               {this.state.books.map(book => (
                 <li key={book.id} >
-                  <Book book={book} />
+                  <Book book={book} change={this._handleChange} />
                 </li>
               ))}
             </ol>
           </div>
         </div>
       </div>
-      }
     )
   }
 }
