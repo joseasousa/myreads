@@ -3,7 +3,6 @@ import * as BooksAPI from '../../api/BooksAPI'
 import { Link } from 'react-router-dom'
 import Book from '../Book'
 
-
 export default class Search extends React.Component {
   constructor (props) {
     super(props)
@@ -15,10 +14,6 @@ export default class Search extends React.Component {
     this._handleChange = e => this.handleChange(e)
   }
 
-  handleChange (event) {    
-    this.setState({redirect: true})
-  }
-
   getBooks (book) {
     // console.log(e.target.value);
     BooksAPI.search(book, 1)
@@ -28,7 +23,7 @@ export default class Search extends React.Component {
 
   render () {
     return (
-      <div className='app'>       
+      <div className='app'>
         <div className='search-books'>
           <div className='search-books-bar'>
             <Link to='/' className='close-search' >Close</Link>
@@ -43,7 +38,7 @@ export default class Search extends React.Component {
             <ol className='books-grid' >
               {this.state.books.map(book => (
                 <li key={book.id} >
-                  <Book book={book} change={this._handleChange} />
+                  <Book book={book} change={this._handleChange} state='none' />
                 </li>
               ))}
             </ol>

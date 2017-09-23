@@ -3,7 +3,7 @@ import React from 'react'
 const Select = ({value, name, change}) => (
   <div className='book-shelf-changer'>
     <select value={value} onChange={change}>
-      <option default value='none' disabled>
+      <option disabled>
         Move to...
       </option>
       <option value='currentlyReading'>
@@ -14,6 +14,9 @@ const Select = ({value, name, change}) => (
       </option>
       <option value='read'>
         Read
+      </option>
+      <option default value='none'>
+        None
       </option>
     </select>
   </div>
