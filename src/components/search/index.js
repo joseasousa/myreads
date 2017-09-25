@@ -15,10 +15,9 @@ export default class Search extends React.Component {
   }
 
   getBooks (book) {
-    // console.log(e.target.value);
     BooksAPI.search(book, 1)
       .then(books => this.setState({books}))
-      .catch(error => console.error(error))
+      .catch(error => this.setState({books: [], message: error}))
   }
 
   render () {
