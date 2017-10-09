@@ -6,6 +6,9 @@ const Select = ({value, name, change}) => (
       <option disabled>
         Move to...
       </option>
+      <option value='none'>
+        None
+      </option>
       <option value='currentlyReading'>
         Currently Reading
       </option>
@@ -14,9 +17,6 @@ const Select = ({value, name, change}) => (
       </option>
       <option value='read'>
         Read
-      </option>
-      <option default value='none'>
-        None
       </option>
     </select>
   </div>

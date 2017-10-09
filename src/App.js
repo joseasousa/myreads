@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <Switch>
         <Route exact path='/' render={() => <MainPage />} />
-        <Route path='/search' render={() => <SearchPage />} />
+        <Route path='/search' render={(props) => <SearchPage {...props} />} />
         <Route render={() => <MainPage />} />
       </Switch>
     )

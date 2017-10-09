@@ -8,7 +8,8 @@ class Book extends React.Component {
     this.state = {
       redirect: false
     }
-    this._handleChange = e => this.handleChange(e.target.value)
+    this._handleChange = e =>
+      this.handleChange(e.target.value)
   }
 
   handleChange (event) {
