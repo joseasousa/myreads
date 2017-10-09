@@ -8,6 +8,7 @@ class BooksApp extends React.Component {
     super(props)
     this.state = {
       books: [],
+      goSeach: false,
       bookStates: [{
         id: 'currentlyReading',
         title: 'Currently Reading'
@@ -19,7 +20,6 @@ class BooksApp extends React.Component {
         title: 'Read'
       }]
     }
-
     this._handleChange = book => this.handleChange(book)
   }
 
@@ -41,7 +41,6 @@ class BooksApp extends React.Component {
     const { books, bookStates } = this.state
     return (
       <div className='list-books'>
-
         <div className='list-books-title'>
           <h1>MyReads</h1>
         </div>
@@ -59,8 +58,12 @@ class BooksApp extends React.Component {
           )}
         </div>
 
-        <div className='open-search'>
-          <Link to='/search'> Add a book
+        <div className='open-search' >
+          <Link
+            to={{
+              pathname: '/search',
+              state: { books }
+            }}> Add a book
           </Link>
         </div>
       </div>

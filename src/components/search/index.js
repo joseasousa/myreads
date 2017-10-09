@@ -11,16 +11,25 @@ export default class Search extends React.Component {
       redirect: false
     }
     this._getBooks = e => this.getBooks(e.target.value)
-    this._handleChange = e => this.handleChange(e)
   }
 
-  getBooks (book) {
-    BooksAPI.search(book, 1)
-      .then(books => this.setState({books}))
+  getBooks (bookQuery) {
+    BooksAPI.search(bookQuery, 1)
+      .then(books =>
+        this.setState({books})
+      )
       .catch(error => this.setState({books: [], message: error}))
   }
 
   render () {
+    const booksState = this.props.location.state.books
+    const PrevBooks = this.state.books
+
+    const books = booksState.filter(item =>
+      PrevBooks.filter(book =>
+        item.id === book.id).length > 0
+    ).concat(PrevBooks)
+
     return (
       <div className='app'>
         <div className='search-books'>
@@ -35,9 +44,9 @@ export default class Search extends React.Component {
           </div>
           <div className='search-books-results'>
             <ol className='books-grid' >
-              {this.state.books.map(book => (
+              {books.map(book => (
                 <li key={book.id} >
-                  <Book book={book} change={this._handleChange} state='none' />
+                  <Book book={book} change={this.props.change} state={book.shelf} />
                 </li>
               ))}
             </ol>
